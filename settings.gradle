@@ -1,4 +1,5 @@
 rootProject.name = 'class-redis-streams'
 
-include 'lib'
+include 'flux-lib'
+include 'mvc-lib'
 include 'demo'

@@ -1,0 +1,74 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.8.21'
+    id 'maven-publish'
+}
+
+group = 'org.austral.ingsis'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive:+'
+    implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions:+'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:+'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor:+'
+}
+
+tasks.withType(KotlinCompile) {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '17'
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+java {
+    withSourcesJar()
+}
+
+task sourceJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/austral-ingsis/class-redis-streams"
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("PASSWORD")
+            }
+        }
+    }
+
+    publications {
+        gpr(MavenPublication) {
+
+            group = 'org.austral.ingsis'
+            artifactId = "redis-streams-flux"
+            version = "0.1.${System.getenv("BUILD_NUMBER")}"
+
+            from(components.kotlin)
+            artifact tasks.sourceJar
+        }
+    }
+}

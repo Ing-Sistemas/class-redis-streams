@@ -64,7 +64,7 @@ publishing {
         gpr(MavenPublication) {
 
             group = 'org.austral.ingsis'
-            artifactId = "redis-streams"
+            artifactId = "redis-streams-mvc"
             version = "0.1.${System.getenv("BUILD_NUMBER")}"
 
             from(components.kotlin)
