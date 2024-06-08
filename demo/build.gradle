@@ -17,6 +17,10 @@ configurations {
     }
 }
 
+bootJar {
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
 repositories {
     mavenCentral()
 }

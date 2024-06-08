@@ -1,6 +1,6 @@
 package org.austral.ingsis.demo.consumer
 
-import org.austral.ingsis.`class`.redis.RedisStreamConsumer
+import org.austral.ingsis.redis.RedisStreamConsumer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.redis.connection.stream.ObjectRecord
@@ -25,6 +25,7 @@ class ProductCreatedConsumer @Autowired constructor(
 
     override fun onMessage(record: ObjectRecord<String, ProductCreated>) {
         // What we want to do with the stream
+        Thread.sleep(1000 * 10)
         println("Id: ${record.id}, Value: ${record.value}, Stream: ${record.stream}, Group: ${groupId}")
     }
 }

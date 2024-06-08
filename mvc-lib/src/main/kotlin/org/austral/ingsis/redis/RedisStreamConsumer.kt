@@ -1,4 +1,4 @@
-package org.austral.ingsis.`class`.redis
+package org.austral.ingsis.redis
 
 import jakarta.annotation.PostConstruct
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory

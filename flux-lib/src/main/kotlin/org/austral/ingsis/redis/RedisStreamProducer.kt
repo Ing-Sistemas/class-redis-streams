@@ -1,4 +1,4 @@
-package org.austral.ingsis.`class`.redis
+package org.austral.ingsis.redis
 
 import org.springframework.data.redis.connection.stream.RecordId
 import org.springframework.data.redis.connection.stream.StreamRecords

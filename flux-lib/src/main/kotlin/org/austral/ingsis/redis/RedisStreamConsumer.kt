@@ -1,7 +1,6 @@
-package org.austral.ingsis.`class`.redis
+package org.austral.ingsis.redis
 
 import jakarta.annotation.PostConstruct
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.runBlocking
 import org.springframework.data.redis.connection.stream.Consumer

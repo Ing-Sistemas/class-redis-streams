@@ -1,8 +1,19 @@
 version: '3'
 
 services:
+  api:
+    container_name: "redis-streams-api-demo"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      REDIS_HOST: event-bus
+      REDIS_PORT: 6379
+
   redis:
-    container_name: "redis"
+    container_name: "event-bus"
     image: redis:6-alpine
     ports:
       - "6379:6379"
