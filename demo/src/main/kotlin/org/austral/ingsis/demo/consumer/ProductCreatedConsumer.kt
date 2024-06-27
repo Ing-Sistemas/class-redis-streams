@@ -3,6 +3,7 @@ package org.austral.ingsis.demo.consumer
 import org.austral.ingsis.redis.RedisStreamConsumer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Profile
 import org.springframework.data.redis.connection.stream.ObjectRecord
 import org.springframework.data.redis.core.ReactiveRedisTemplate
 import org.springframework.data.redis.stream.StreamReceiver
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component
 import java.time.Duration
 
 @Component
+@Profile("!test")
 class ProductCreatedConsumer @Autowired constructor(
     redis: ReactiveRedisTemplate<String, String>,
     @Value("\${stream.key}") streamKey: String,

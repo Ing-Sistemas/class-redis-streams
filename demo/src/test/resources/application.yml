@@ -1,0 +1,23 @@
+server:
+  port: 8083
+
+# disable all redis params
+spring:
+  data:
+    redis:
+      jedis:
+        pool:
+          enabled: false
+      lettuce:
+        pool:
+          enabled: false
+      repositories:
+        enabled: false
+
+# streamKeys to be used by producers
+stream:
+  key: "mystream"
+
+# groupIds to be used by consumers
+groups:
+  product: "productcreated"
